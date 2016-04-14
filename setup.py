@@ -10,9 +10,7 @@ PACKAGES = [
     "django_calculated_field",
 ]
 
-REQUIREMENTS = [
-    'Django==1.9',
-]
+REQUIREMENTS = []
 
 setup(
       name='django-calculated-field',
