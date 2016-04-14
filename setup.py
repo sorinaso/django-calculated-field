@@ -8,17 +8,14 @@ version = '0.1'
 
 PACKAGES = [
     "django_calculated_field",
-    "django_calculated_field.tests",
-    "django_calculated_field.management"
 ]
 
 REQUIREMENTS = [
-    'Django>=1.5',
-    'South==0.8'
+    'Django==1.9',
 ]
 
 setup(
-      name='django-calculated-fields',
+      name='django-calculated-field',
       version=version,
       description="Django package for automated calculations in fields for denormalization",
       classifiers=[
