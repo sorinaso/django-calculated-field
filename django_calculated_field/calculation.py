@@ -1,10 +1,9 @@
 import inspect
-from django.core.exceptions import ValidationError
-from django.db import models
 from django.db.models.fields import FieldDoesNotExist
 from django_calculated_field import CalculatedFieldError, recalculation
 from django_calculated_field.recalculation import FieldRecalculation
 from django.conf import settings
+from django.apps import apps
 
 def load_field_calculations_from_settings():
     #if type(recalculation.table) is not dict or len(recalculation.table) != 0:
@@ -58,7 +57,7 @@ class FieldCalculation(object):
         """Contruye un calculo de un campo a partir de su definicion."""
         app_name, model_name, field_name = definition['field'].split('.')
 
-        model = models.get_model(app_name, model_name)
+        model = apps.get_model(app_name, model_name)
         method_name = "calculate_%s" % field_name
 
         try:
