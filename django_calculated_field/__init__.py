@@ -1,0 +1,2 @@
+class CalculatedFieldError(Exception):
+    pass
