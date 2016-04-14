@@ -2,20 +2,18 @@ from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 import sys, os
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_settings')
-
-version = '0.1'
-
 PACKAGES = [
     "django_calculated_field",
 ]
 
 REQUIREMENTS = []
 
+version = __import__('django_calculated_field').__version__
+
 setup(
       name='django-calculated-field',
       version=version,
-      description="Django package for automated calculations in fields for denormalization",
+      description="Django package for automated calculations in fields for denormalizated fields",
       classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
