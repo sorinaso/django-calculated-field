@@ -4,8 +4,6 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
-from django.db import models
-from django.db.models.aggregates import Sum
 from django.test import TestCase
 import mock
 from django_calculated_field import recalculation, consistency
@@ -13,33 +11,14 @@ from django_calculated_field.calculation import FieldCalculation
 from django_calculated_field.fields import CalculatedDecimalField, CalculatedIntegerField
 from django_calculated_field import CalculatedFieldError
 from django_calculated_field.recalculation import FieldRecalculation, FieldRecalculationOnRelated
-
-class TestModel(models.Model):
-    total = models.IntegerField(default=0)
-    total2 = models.IntegerField(default=0)
-
-    def calculate_total(self):
-        return TestModelDependency.objects.filter(dependient=self).\
-                aggregate(Sum('amount'))['amount__sum'] or 0
-
-    def calculate_total2(self):
-        return (TestModelDependency.objects.filter(dependient=self).
-                aggregate(Sum('amount'))['amount__sum'] or 0) * 2
-
-    def __unicode__(self):
-        return "TestModel id: %s" % unicode(self.id)
-
-class TestModelDependency(models.Model):
-    must_recalculate = models.BooleanField(default=False)
-    amount = models.IntegerField()
-    dependient = models.ForeignKey(TestModel, related_name='dependencies')
+from tests.models import TestModel, TestModelDependency
 
 class FieldCalculationTest(TestCase):
     def test_build(self):
         fc, fr = FieldCalculation.build(
             {
-            'field': 'django_calculated_field.TestModel.total',
-            'recalculates_on': {  'model': 'django_calculated_field.TestModelDependency',
+            'field': 'tests.TestModel.total',
+            'recalculates_on': {  'model': 'tests.TestModelDependency',
                                   'if_post_save': lambda i: i.status == 'C'}
             },
         )
@@ -56,7 +35,7 @@ class FieldCalculationTest(TestCase):
 class FieldRecalculationTest(TestCase):
     def test_build(self):
         condition = lambda i: True
-        ret = FieldRecalculation.build(mock.MagicMock(), {'model': 'django_calculated_field.TestModelDependency',
+        ret = FieldRecalculation.build(mock.MagicMock(), {'model': 'tests.TestModelDependency',
                                                           'if_post_save': condition })
         self.assertIsInstance(ret, FieldRecalculationOnRelated)
         self.assertEqual(ret.model, TestModelDependency)

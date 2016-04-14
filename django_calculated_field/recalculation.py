@@ -1,6 +1,5 @@
-from django.db.models.base import Model
-from django.db.models.loading import get_model
 from django.db.models.signals import post_save, post_delete
+from django.apps import apps
 
 # Table de dependencias para refrescos.
 from django_calculated_field.helpers import find_fks
@@ -49,8 +48,9 @@ class FieldRecalculation(object):
     @classmethod
     def build(cls, field_calculation, recalculates_on):
         """Construye una dependencia de un diccionario."""
-        model = get_model(*(recalculates_on['model'].split('.')))
-        if model is None:
+        try:
+            model = apps.get_model(*(recalculates_on['model'].split('.')))
+        except LookupError:
             raise CalculatedFieldError("No existe el modelo de recalculo: %s" % recalculates_on['model'])
 
         return FieldRecalculationOnRelated(field_calculation, model,
