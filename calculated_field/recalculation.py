@@ -2,8 +2,8 @@ from django.db.models.signals import post_save, post_delete
 from django.apps import apps
 
 # Table de dependencias para refrescos.
-from django_calculated_field.helpers import find_fks
-from django_calculated_field import CalculatedFieldError
+from calculated_field.helpers import find_fks
+from calculated_field import CalculatedFieldError
 
 table = {}
 

@@ -1,7 +1,7 @@
 import inspect
 from django.db.models.fields import FieldDoesNotExist
-from django_calculated_field import CalculatedFieldError, recalculation
-from django_calculated_field.recalculation import FieldRecalculation
+from calculated_field import CalculatedFieldError, recalculation
+from calculated_field.recalculation import FieldRecalculation
 from django.conf import settings
 from django.apps import apps
 

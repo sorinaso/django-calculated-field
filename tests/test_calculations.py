@@ -6,11 +6,11 @@ Replace this with more appropriate tests for your application.
 """
 from django.test import TestCase
 import mock
-from django_calculated_field import recalculation, consistency
-from django_calculated_field.calculation import FieldCalculation
-from django_calculated_field.fields import CalculatedDecimalField, CalculatedIntegerField
-from django_calculated_field import CalculatedFieldError
-from django_calculated_field.recalculation import FieldRecalculation, FieldRecalculationOnRelated
+from calculated_field import recalculation, consistency
+from calculated_field.calculation import FieldCalculation
+from calculated_field.fields import CalculatedDecimalField, CalculatedIntegerField
+from calculated_field import CalculatedFieldError
+from calculated_field.recalculation import FieldRecalculation, FieldRecalculationOnRelated
 from tests.models import TestModel, TestModelDependency
 
 class FieldCalculationTest(TestCase):

@@ -1,5 +1,5 @@
 from django.core.exceptions import MiddlewareNotUsed
-from django_calculated_field import calculation
+from calculated_field import calculation
 
 class CalculatedFieldMiddleware(object):
     calculated_field_loaded = False

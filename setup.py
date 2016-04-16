@@ -3,12 +3,12 @@ from setuptools.command.test import test as TestCommand
 import sys, os
 
 PACKAGES = [
-    "django_calculated_field",
+    "calculated_field",
 ]
 
 REQUIREMENTS = []
 
-version = __import__('django_calculated_field').__version__
+version = __import__('calculated_field').__version__
 
 setup(
       name='django-calculated-field',

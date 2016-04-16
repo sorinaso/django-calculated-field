@@ -1,5 +1,5 @@
 from collections import namedtuple
-import django_calculated_field
+import calculated_field
 
 Inconsistency = namedtuple('Inconsistency', 'object field_name database_value calculated_value')
 
@@ -8,7 +8,7 @@ class ConsistencyChecker(object):
     def __init__(self):
         self.inconsistencies = []
 
-        for (model, recalculations) in django_calculated_field.recalculation.table.iteritems():
+        for (model, recalculations) in calculated_field.recalculation.table.iteritems():
             for recalculation in recalculations:
                 calculation = recalculation.field_calculation
                 objs = calculation.model.objects.all()

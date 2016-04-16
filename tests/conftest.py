@@ -27,7 +27,7 @@ def pytest_configure():
             'django.contrib.sessions',
             'django.contrib.sites',
             'django.contrib.staticfiles',
-            'django_calculated_field',
+            'calculated_field',
             'tests',
         ),
         PASSWORD_HASHERS=(
